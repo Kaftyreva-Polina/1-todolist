@@ -1,0 +1,28 @@
+import React from 'react';
+import './App.css';
+import Todolist, {TaskType} from "./Todolist";
+
+function App() {
+    const todoListTitle_1: string = "What to learn"
+    const todoListTitle_2: string = "What to buy"
+    const tasks_1: Array<TaskType> = [
+        {id: 1, title: "HTML", isDone: true},
+        {id: 2, title: "CSS", isDone: true},
+        {id: 3, title: "JS/TS", isDone: false},
+        {id: 3, title: "JS/TS", isDone: false},
+        {id: 3, title: "JS/TS", isDone: false},
+    ]
+    const tasks_2: Array<TaskType> = [
+        {id: 1, title: "Meat", isDone: true},
+        {id: 2, title: "Fruit", isDone: false},
+        {id: 3, title: "Veggies", isDone: false},
+    ]
+    return (
+        <div className="App">
+            <Todolist title={todoListTitle_1} tasks={tasks_1}/>
+            <Todolist title={todoListTitle_2} tasks={tasks_2}/>
+        </div>
+    );
+}
+
+export default App;
