@@ -1,8 +1,11 @@
 import React from 'react';
+import {FilterValuesType} from "./App";
 
 type TodolistPropsType = {
     title: string
     tasks: Array<TaskType>
+    removeTask: (taskId: number) => void
+    changeFilter: (filter: FilterValuesType) => void //делаем экспорт из App.tsx
 }
 
 export type TaskType = {
@@ -11,32 +14,18 @@ export type TaskType = {
     isDone: boolean
 }
 const Todolist = (props: TodolistPropsType) => {
-    // let tasksList;
-    // if(props.tasks.length === 0){
-    //     tasksList = <span>Your taskslist is empty</span>
-    // } else {
-    //     tasksList = props.tasks.map((task:TaskType) => {
-    //         return (
-    //             <li>
-    //                 <input type="checkbox" checked={task.isDone}/>
-    //                 <span>{task.title}</span>
-    //             </li>
-    //         )
-    //     })
-    // }
-
     let tasksList = props.tasks.length
         ? props.tasks.map((task: TaskType) => {
+            const removeTask = () => props.removeTask(task.id)
             return (
                 <li>
                     <input type="checkbox" checked={task.isDone}/>
                     <span>{task.title}</span>
+                    <button onClick={removeTask}>x</button>
                 </li>
             )
         })
         : <span>Your taskslist is empty</span>
-
-    // props.tasks.length
 
 
     return (
@@ -51,9 +40,9 @@ const Todolist = (props: TodolistPropsType) => {
                     {tasksList}
                 </ul>
                 <div>
-                    <button>All</button>
-                    <button>Active</button>
-                    <button>Completed</button>
+                    <button onClick={() => props.changeFilter("all")}>All</button>
+                    <button onClick={() => props.changeFilter("active")}>Active</button>
+                    <button onClick={() => props.changeFilter("completed")}>Completed</button>
                 </div>
             </div>
         </div>
@@ -62,16 +51,3 @@ const Todolist = (props: TodolistPropsType) => {
 
 export default Todolist;
 
-
-// <li>
-//     <input type="checkbox" checked={props.tasks[0].isDone}/>
-//     <span>{props.tasks[0].title}</span>
-// </li>
-// <li>
-//     <input type="checkbox" checked={props.tasks[1].isDone}/>
-//     <span>{props.tasks[1].title}</span>
-// </li>
-// <li>
-//     <input type="checkbox" checked={props.tasks[2].isDone}/>
-//     <span>{props.tasks[2].title}</span>
-// </li>
