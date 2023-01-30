@@ -5,7 +5,7 @@ type TodolistPropsType = {
     title: string
     tasks: Array<TaskType>
     removeTask: (taskId: number) => void
-    changeFilter: (filter: FilterValuesType) => void //делаем экспорт из App.tsx
+    changeFilter: (filter: FilterValuesType) => void
 }
 
 export type TaskType = {
