@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import './App.css';
+import React, {useState} from "react";
+import "./App.css";
 import Todolist, {TaskType} from "./Todolist";
-import {v1} from 'uuid';
+import {v1} from "uuid";
 
 export type FilterValuesType = "all" | "active" | "completed"
 
@@ -37,13 +37,16 @@ function App() {
         setTasks([...tasks, newTask])
     }
 
+    const changeTaskStatus = (taskId: string, isDone: boolean) => {
+        setTasks(tasks.map((t) => t.id === taskId ? {...t, isDone: isDone} : t))
+    }
     const getFilteredTasksForRender =
         (tasks: Array<TaskType>, filter: FilterValuesType): Array<TaskType> => {
             switch (filter) {
                 case "active":
-                    return tasks.filter(task => task.isDone === false)
+                    return tasks.filter(task => !task.isDone)
                 case "completed":
-                    return tasks.filter(task => task.isDone === true)
+                    return tasks.filter(task => task.isDone)
                 default:
                     return tasks
             }
@@ -59,7 +62,8 @@ function App() {
                 removeTask={removeTask}
                 changeFilter={changeFilter}
                 addTask={addTask}
-
+                filter={filter}
+                changeTaskStatus={changeTaskStatus}
             />
         </div>
     );
