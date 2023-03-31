@@ -45,7 +45,7 @@ const Todolist = (props: TodolistPropsType) => {
 
     const addTask = () => {
         const trimmedTitle = title.trim()
-        trimmedTitle !== "" ? props.addTask(title) : setError(true)
+        trimmedTitle !== "" ? props.addTask(title.trim()) : setError(true)
 
         setTitle("")
     }
