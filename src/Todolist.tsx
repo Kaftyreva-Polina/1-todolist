@@ -6,10 +6,12 @@ type TodolistPropsType = {
     title: string
     filter: FilterValuesType
     tasks: TaskType[]
+
     addTask: (title: string, todoListId: string) => void
     removeTask: (taskId: string, todoListId: string) => void
     changeTodoListFilter: (filter: FilterValuesType, todoListId: string) => void
     changeTaskStatus: (taskId: string, isDone: boolean, todoListId: string) => void
+
     removeTodoList: (todoListId: string) => void
 }
 
@@ -46,14 +48,13 @@ const Todolist = (props: TodolistPropsType) => {
 
 
     const addTask = () => {
-        const trimmedTitle = title.trim()
-        if (trimmedTitle) {
-            props.addTask(trimmedTitle, props.todoListId)
-        } else {
-            setError(true)
+
+            const trimmedTitle = title.trim()
+
+            trimmedTitle !== "" ? props.addTask(title.trim(), props.todoListId) : setError(true)
+
+            setTitle("")
         }
-        setTitle("")
-    }
     const onChangeLocalTitle = (e: ChangeEvent<HTMLInputElement>) => {
         error && setError(false)
         setTitle(e.currentTarget.value)
@@ -67,8 +68,11 @@ const Todolist = (props: TodolistPropsType) => {
     const inputErrorClasses = error ? "input-error" : ""
     return (
         <div>
-            <h3>{props.title}</h3>
-            <button onClick={removeTodoList}>x</button>
+            <h3>
+                {props.title}
+                <button onClick={removeTodoList}>x</button>
+            </h3>
+            {/*<button onClick={removeTodoList}>x</button>*/}
             <div>
                 <input
                     type="text"
