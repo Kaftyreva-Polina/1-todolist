@@ -4,21 +4,38 @@
 }
 
 .App > div {
-    margin-right: 50px;
+    margin-right: 20px;
 }
 
-.task-done {
-    text-decoration: line-through;
+
+/*New*/
+.todolist {
+    border: 2px solid darkslategray;
+    border-radius: 5px;
+    padding: 20px;
+    background: lightseagreen;
+}
+
+.todolist-empty {
+    border: 2px solid darkslategray;
+    border-radius: 5px;
+    padding: 20px;
+    background: limegreen;
 }
 
 .task {
     font-weight: bold;
 }
 
+.task-done {
+    font-weight: normal;
+    text-decoration: line-through;
+}
+
 .btn-active {
-    color: white;
-    background-color: hotpink;
-    border: 2px solid hotpink;
+    color: black;
+    background-color: teal;
+    border: 2px solid darkslategray;
     border-radius: 3px;
 }
 
