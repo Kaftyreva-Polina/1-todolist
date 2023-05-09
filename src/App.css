@@ -1,11 +1,11 @@
-.App {
-    padding: 30px;
-    display: flex;
-}
+/*.App {*/
+/*    padding: 30px;*/
+/*    display: flex;*/
+/*}*/
 
-.App > div {
-    margin-right: 20px;
-}
+/*.App > div {*/
+/*    margin-right: 20px;*/
+/*}*/
 
 
 /*New*/
@@ -42,4 +42,15 @@
 .input-error {
     border: 5px solid red;
     outline: none;
+}
+
+.btn-filter-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
 }

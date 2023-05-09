@@ -1,4 +1,6 @@
 import React, {ChangeEvent, FC, KeyboardEvent, useState} from "react";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import {IconButton, TextField} from "@mui/material";
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void
@@ -30,28 +32,28 @@ const AddItemForm: FC<AddItemFormPropsType> = ({addItem, recommendedTitleLength,
         : (e: KeyboardEvent<HTMLInputElement>) => e.key === "Enter" && addTaskHandler()
 
     const longTitleWarningMessage = (title.length > recommendedTitleLength && title.length <= maxTitleLength) &&
-        <div style={{color: "white"}}>Title should be shorter</div>
+        <span style={{color: "white"}}>Title should be shorter</span>
     const longTitleErrorMessage = title.length > maxTitleLength &&
-        <div style={{color: "#ff0000"}}>Title is too long</div>
-    const errorMessage = error && <div style={{color: "#ff0000"}}>Title is hard required!</div>
+        <span style={{color: "#ff0000"}}>Title is too long</span>
+    const errorMessage = error && "Title is hard required!"
 
     return (
-        <div>
-            <input
-                placeholder="Enter task title, please"
+        <div className="add-form">
+            <TextField
+                size="small"
+                placeholder="Enter item title, please"
                 value={title}
                 onChange={setLocalTitleHandler}
                 onKeyDown={onKeyDownAddTaskHandler}
-                className={error ? "input-error" : ""}
+                error={error}
+                helperText={errorMessage || longTitleWarningMessage || longTitleErrorMessage}
             />
-            <button
+            <IconButton
+                size="small"
                 disabled={isAddTaskNotPossible}
                 onClick={addTaskHandler}
-            >+
-            </button>
-            {longTitleWarningMessage}
-            {longTitleErrorMessage}
-            {errorMessage}
+            ><AddBoxIcon/>
+            </IconButton>
         </div>
     );
 };
