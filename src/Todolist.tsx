@@ -1,9 +1,10 @@
-import React, {ChangeEvent, FC} from "react";
+import React, {FC} from "react";
 import {FilterValuesType} from "./App";
 import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
-import {Button, Checkbox, IconButton, List, ListItem, Typography} from "@mui/material";
+import {Button, IconButton, List, ListItem, Typography} from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import {UniversalCheckBox} from "./components/UniversalCheckBox";
 
 type TodolistPropsType = {
     todoListId: string
@@ -38,8 +39,11 @@ const TodoList: FC<TodolistPropsType> = (props) => {
     const todoClasses = isAllTasksNotIsDone ? "todolist-empty" : "todolist"
     const todoListItems: Array<JSX.Element> = props.tasks.map((task) => {
         const removeTaskHandler = () => props.removeTask(task.id, props.todoListId)
-        const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) => props.changeTaskStatus(task.id, e.currentTarget.checked, props.todoListId)
+        // const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) => props.changeTaskStatus(task.id, e.currentTarget.checked, props.todoListId)
         const changeTaskTitle = (newTitle: string) => props.changeTaskTitle(task.id, newTitle, props.todoListId)
+        const changeStatusHandler = (taskId: string, newIsDone: boolean) => {
+            props.changeTaskStatus(taskId, newIsDone, props.todoListId)
+        }
         return (
             <ListItem
                 key={task.id}
@@ -52,12 +56,13 @@ const TodoList: FC<TodolistPropsType> = (props) => {
                     </IconButton>
                 }
             >
-                <Checkbox
-                    color="secondary"
-                    edge="start"
-                    onChange={changeTaskStatus}
-                    checked={task.isDone}
-                />
+                <UniversalCheckBox isDone={task.isDone} callBack={(isDone) => changeStatusHandler(task.id, isDone)}/>
+                {/*<Checkbox*/}
+                {/*    color="secondary"*/}
+                {/*    edge="start"*/}
+                {/*    onChange={changeTaskStatus}*/}
+                {/*    checked={task.isDone}*/}
+                {/*/>*/}
                 <EditableSpan title={task.title}
                               changeTitle={changeTaskTitle}
                               classes={task.isDone ? "task-done" : "task"}
