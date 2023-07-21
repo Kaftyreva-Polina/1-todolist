@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, KeyboardEvent, useState} from "react";
+import React, {ChangeEvent, FC, KeyboardEvent, memo, useState} from "react";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import {IconButton, TextField} from "@mui/material";
 
@@ -8,7 +8,7 @@ type AddItemFormPropsType = {
     maxTitleLength: number
 }
 
-const AddItemForm: FC<AddItemFormPropsType> = ({addItem, recommendedTitleLength, maxTitleLength}) => {
+const AddItemForm: FC<AddItemFormPropsType> = memo(({addItem, recommendedTitleLength, maxTitleLength}) => {
     const [title, setTitle] = useState<string>("")
     const [error, setError] = useState<boolean>(false)
 
@@ -32,7 +32,7 @@ const AddItemForm: FC<AddItemFormPropsType> = ({addItem, recommendedTitleLength,
         : (e: KeyboardEvent<HTMLInputElement>) => e.key === "Enter" && addTaskHandler()
 
     const longTitleWarningMessage = (title.length > recommendedTitleLength && title.length <= maxTitleLength) &&
-        <span style={{color: "white"}}>Title should be shorter</span>
+        <span style={{color: "black"}}>Title should be shorter</span>
     const longTitleErrorMessage = title.length > maxTitleLength &&
         <span style={{color: "#ff0000"}}>Title is too long</span>
     const errorMessage = error && "Title is hard required!"
@@ -56,6 +56,6 @@ const AddItemForm: FC<AddItemFormPropsType> = ({addItem, recommendedTitleLength,
             </IconButton>
         </div>
     );
-};
+});
 
 export default AddItemForm;
