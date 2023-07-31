@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from "react";
-import TodolistWithRedux from "./TodolistWithRedux";
+import TodolistWithRedux, {TaskType} from "./TodolistWithRedux";
 import "./App.css";
 import AddItemForm from "./AddItemForm";
 import {
@@ -28,6 +28,10 @@ export type TodolistType = {
     id: string
     title: string
     filter: FilterValuesType
+}
+
+export type TasksStateType = {
+    [todoListId: string]: Array<TaskType>
 }
 
 function AppWithRedux(): JSX.Element {

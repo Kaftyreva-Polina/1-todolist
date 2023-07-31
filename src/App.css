@@ -1,36 +1,21 @@
-/*.App {*/
-/*    padding: 30px;*/
-/*    display: flex;*/
-/*}*/
-
-/*.App > div {*/
-/*    margin-right: 20px;*/
-/*}*/
-
-
-/*New*/
 .todolist {
     border: 2px solid darkslategray;
     border-radius: 5px;
     padding: 20px;
-    background: lightseagreen;
+    background: #00899b;
 }
 
 .todolist-empty {
     border: 2px solid darkslategray;
     border-radius: 5px;
     padding: 20px;
-    background: limegreen;
+    background: #a5d6a7;
 }
 
 .task {
-    font-weight: bold;
+    font-weight: normal;
 }
 
-.task-done {
-    font-weight: normal;
-    text-decoration: line-through;
-}
 
 .btn-active {
     color: black;

@@ -6,10 +6,10 @@ import {Button, List, Typography} from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
-import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./state/tasks-reducer";
+import {addTaskAC} from "./state/tasks-reducer";
 import {changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC} from "./state/todolists-reducer";
-import {Task} from "./Task";
 import {ButtonWithMemo} from "./components/ButtonWithMemo";
+import {TaskWithRedux} from "./TaskWithRedux";
 
 type TodolistPropsType = {
     todoListId: string
@@ -46,26 +46,13 @@ const TodolistWithRedux: FC<TodolistPropsType> = memo((props) => {
         tasks = tasks.filter(t => t.isDone)
     }
 
-    const changeTaskTitle = useCallback((taskId: string, newTitle: string) => {
-        dispatch(changeTaskTitleAC(taskId, newTitle, props.todoListId))
-    }, [dispatch, props.todoListId])
-
-    const changeTaskStatus = useCallback((taskId: string, isDone: boolean) => {
-        dispatch(changeTaskStatusAC(taskId, isDone, props.todoListId))
-    }, [dispatch, props.todoListId])
-
-    const removeTask = useCallback((taskId: string) => {
-        dispatch(removeTaskAC(taskId, props.todoListId))
-    }, [dispatch, props.todoListId])
-
     const todoListItems: Array<JSX.Element> = tasks.map((task) => {
         return (
-            <Task
+            <TaskWithRedux
                 key={task.id}
                 task={task}
-                changeTaskTitle={changeTaskTitle}
-                changeTaskStatus={changeTaskStatus}
-                removeTask={removeTask}/>
+                todolistId={props.todoListId}
+            />
         )
     })
 
