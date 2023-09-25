@@ -3,21 +3,12 @@ import {TextField} from "@mui/material";
 
 type EditableSpanPropsType = {
     title: string
-    classes?: string
     changeTitle: (newTitle: string) => void
 }
-const EditableSpan = memo((props: EditableSpanPropsType) => {
+export const EditableSpan = memo(function (props: EditableSpanPropsType) {
     console.log("EditableSpan")
     const [isEditMode, setIsEditMode] = useState<boolean>(false)
     const [value, setValue] = useState<string>(props.title)
-
-    // const toggleEditMode = () => {
-    //     if (isEditMode) {
-    //         setIsEditMode(isEditMode)
-    //         props.changeTitle(value)
-    //     }
-    //     setIsEditMode(!isEditMode)
-    // }
 
     const activateEditMode = () => {
         setIsEditMode(true);
@@ -40,11 +31,9 @@ const EditableSpan = memo((props: EditableSpanPropsType) => {
                 onBlur={activateViewMode}
                 onChange={setValueHandler}
                 autoFocus/>
-            : <span
-                onDoubleClick={activateEditMode}
-                className={props.classes}>{value}</span>
+            : <span onDoubleClick={activateEditMode}>{props.title}</span>
     );
 });
 
-export default EditableSpan;
+
 

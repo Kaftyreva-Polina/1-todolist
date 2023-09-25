@@ -1,7 +1,7 @@
 import React, {ChangeEvent, memo, useCallback} from "react";
 import {Checkbox, IconButton, ListItem} from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import EditableSpan from "./EditableSpan";
+import {EditableSpan} from "./editableSpan/EditableSpan";
 import {TaskType} from "./TodolistWithRedux";
 import {useDispatch} from "react-redux";
 import {changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./state/tasks-reducer";
@@ -45,7 +45,7 @@ export const TaskWithRedux = memo(({task, todolistId}: TaskPropsType) => {
             />
             <EditableSpan title={task.title}
                           changeTitle={onTitleChangeHandler}
-                          classes={"task"}
+                          // classes={"task"}
             />
         </ListItem>
     )

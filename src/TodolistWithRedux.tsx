@@ -1,6 +1,6 @@
 import React, {FC, memo, useCallback} from "react";
 import {FilterValuesType} from "./AppWithRedux";
-import EditableSpan from "./EditableSpan";
+import {EditableSpan} from "./editableSpan/EditableSpan";
 import {Button, List, Typography} from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import {useDispatch, useSelector} from "react-redux";
