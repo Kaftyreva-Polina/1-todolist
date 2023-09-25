@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from "react";
 import TodolistWithRedux, {TaskType} from "./TodolistWithRedux";
 import "./App.css";
-import AddItemForm from "./AddItemForm";
+import AddItemForm from "./addItemForm/AddItemForm";
 import {
     AppBar,
     Button,
@@ -22,6 +22,7 @@ import {Menu} from "@mui/icons-material";
 import {addTodolistAC} from "./state/todolists-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
+
 
 export type FilterValuesType = "all" | "active" | "completed"
 export type TodolistType = {

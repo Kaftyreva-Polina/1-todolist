@@ -1,6 +1,5 @@
 import React, {FC, memo, useCallback} from "react";
 import {FilterValuesType} from "./AppWithRedux";
-import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
 import {Button, List, Typography} from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -10,6 +9,7 @@ import {addTaskAC} from "./state/tasks-reducer";
 import {changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC} from "./state/todolists-reducer";
 import {ButtonWithMemo} from "./components/ButtonWithMemo";
 import {TaskWithRedux} from "./TaskWithRedux";
+import AddItemForm from "./addItemForm/AddItemForm";
 
 type TodolistPropsType = {
     todoListId: string

@@ -2,7 +2,7 @@ import React, {ChangeEvent, FC, KeyboardEvent, memo, useState} from "react";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import {IconButton, TextField} from "@mui/material";
 
-type AddItemFormPropsType = {
+export type AddItemFormPropsType = {
     addItem: (title: string) => void
     recommendedTitleLength: number
     maxTitleLength: number
@@ -35,7 +35,7 @@ const AddItemForm: FC<AddItemFormPropsType> = memo(({addItem, recommendedTitleLe
         <span style={{color: "black"}}>Title should be shorter</span>
     const longTitleErrorMessage = title.length > maxTitleLength &&
         <span style={{color: "#ff0000"}}>Title is too long</span>
-    const errorMessage = error && "Title is hard required!"
+    const errorMessage = error && "Title is required!"
 
     return (
         <div className="add-form">

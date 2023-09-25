@@ -21,7 +21,7 @@ export const TaskWithRedux = memo(({task, todolistId}: TaskPropsType) => {
     }
     const onTitleChangeHandler = useCallback((newTitle: string) => {
         dispatch(changeTaskTitleAC(task.id, newTitle, todolistId))
-    }, [task.id])
+    }, [task.id, dispatch, todolistId])
     const onStatusChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         let newIsDone = e.currentTarget.checked
         dispatch(changeTaskStatusAC(task.id, newIsDone, todolistId))
