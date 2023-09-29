@@ -1,10 +1,10 @@
 import React, {ChangeEvent, memo, useCallback} from "react";
 import {Checkbox, IconButton, ListItem} from "@mui/material";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import {useDispatch} from "react-redux";
 import {TaskType} from "../TodolistWithRedux";
 import {changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "../state/tasks-reducer";
 import {EditableSpan} from "../editableSpan/EditableSpan";
+import {Delete} from "@mui/icons-material";
 
 
 export type TaskPropsType = {
@@ -30,11 +30,10 @@ export const TaskWithRedux = memo(function ({task, todolistId}: TaskPropsType) {
     return (
         <ListItem
             divider
-            disablePadding
             secondaryAction={
                 <IconButton
                     size="small"
-                    onClick={removeTaskHandler}><DeleteForeverIcon/>
+                    onClick={removeTaskHandler}><Delete/>
                 </IconButton>
             }
         >
