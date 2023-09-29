@@ -1,17 +1,17 @@
 import React, {ChangeEvent, memo, useCallback} from "react";
 import {Checkbox, IconButton, ListItem} from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import {EditableSpan} from "./editableSpan/EditableSpan";
-import {TaskType} from "./TodolistWithRedux";
 import {useDispatch} from "react-redux";
-import {changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./state/tasks-reducer";
+import {TaskType} from "../TodolistWithRedux";
+import {changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "../state/tasks-reducer";
+import {EditableSpan} from "../editableSpan/EditableSpan";
 
 
 export type TaskPropsType = {
     task: TaskType
     todolistId: string
 }
-export const TaskWithRedux = memo(({task, todolistId}: TaskPropsType) => {
+export const TaskWithRedux = memo(function ({task, todolistId}: TaskPropsType) {
     console.log("TaskWithRedux")
 
     const dispatch = useDispatch()
@@ -45,7 +45,6 @@ export const TaskWithRedux = memo(({task, todolistId}: TaskPropsType) => {
             />
             <EditableSpan title={task.title}
                           changeTitle={onTitleChangeHandler}
-                          // classes={"task"}
             />
         </ListItem>
     )

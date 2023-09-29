@@ -8,7 +8,7 @@ import {AppRootStateType} from "./state/store";
 import {addTaskAC} from "./state/tasks-reducer";
 import {changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC} from "./state/todolists-reducer";
 import {ButtonWithMemo} from "./components/ButtonWithMemo";
-import {TaskWithRedux} from "./TaskWithRedux";
+import {TaskWithRedux} from "./taskComponent/TaskWithRedux";
 import AddItemForm from "./addItemForm/AddItemForm";
 
 type TodolistPropsType = {
@@ -60,22 +60,18 @@ const TodolistWithRedux: FC<TodolistPropsType> = memo((props) => {
         dispatch(addTaskAC(title, props.todoListId))
     }, [props.todoListId, dispatch])
     const removeTodoList = useCallback(() => {
-        let action = removeTodolistAC(props.todoListId)
-        dispatch(action)
+        dispatch(removeTodolistAC(props.todoListId))
     }, [props.todoListId, dispatch])
     const changeTodolistTitle = useCallback((title: string) => {
         dispatch(changeTodolistTitleAC(title, props.todoListId))
     }, [dispatch, props.todoListId])
 
 
-    const onAllClickHandler = useCallback(
-        () => dispatch(changeTodolistFilterAC(props.todoListId, "all")),
+    const onAllClickHandler = useCallback(() => dispatch(changeTodolistFilterAC(props.todoListId, "all")),
         [dispatch, props.todoListId])
-    const onActiveClickHandler = useCallback(
-        () => dispatch(changeTodolistFilterAC(props.todoListId, "active")),
+    const onActiveClickHandler = useCallback(() => dispatch(changeTodolistFilterAC(props.todoListId, "active")),
         [dispatch, props.todoListId])
-    const onCompletedClickHandler = useCallback(
-        () => dispatch(changeTodolistFilterAC(props.todoListId, "completed")),
+    const onCompletedClickHandler = useCallback(() => dispatch(changeTodolistFilterAC(props.todoListId, "completed")),
         [props.todoListId, dispatch])
 
 
